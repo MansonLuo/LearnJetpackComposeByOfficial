@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun WellnessTaskItem(
-    taskName: String,
+   taskName: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     onClose: () -> Unit,
@@ -32,42 +32,18 @@ fun WellnessTaskItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = taskName,
             modifier = Modifier
                 .weight(1f)
-                .padding(start = 16.dp)
+                .padding(start = 16.dp),
+            text = taskName
         )
         Checkbox(
             checked = checked,
             onCheckedChange = onCheckedChange
         )
+
         IconButton(onClick = onClose) {
             Icon(Icons.Filled.Close, contentDescription = "Close")
         }
     }
-}
-
-@Composable
-fun WellnessTaskItem(
-    taskName: String,
-    onClose: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    var checkedState by rememberSaveable {
-        mutableStateOf(false)
-    }
-
-    WellnessTaskItem(
-        taskName = taskName,
-        checked = checkedState,
-        onCheckedChange = { newValue -> checkedState = newValue},
-        onClose = onClose,
-        modifier = modifier,
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun WellnessTaskItemPreview() {
-    WellnessTaskItem(taskName = "This is a task", checked = true, onCheckedChange = {}, onClose = { /*TODO*/ })
 }
