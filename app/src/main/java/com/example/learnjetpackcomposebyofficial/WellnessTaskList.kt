@@ -18,8 +18,16 @@ fun WellnessTaskList(
     LazyColumn(
         modifier = modifier
     ) {
-        items(list) {task ->
-            WellnessTaskItem(taskName = task.label)
+        items(
+            list,
+            key = { item -> item.id }
+        ) {task ->
+            WellnessTaskItem(
+                taskName = task.label,
+                onClose = {
+                    onCloseTask(task)
+                }
+            )
         }
     }
 }
